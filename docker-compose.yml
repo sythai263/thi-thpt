@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  db:
+    image: mariadb:latest
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    restart: always
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=${DB_ROOT_USER}
+      - PMA_PASSWORD=${DB_ROOT_PASSWORD}
+    depends_on:
+      - db
+
+volumes:
+  db-data:

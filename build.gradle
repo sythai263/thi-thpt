@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.ptithcm'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+
+    // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+    implementation 'com.mysql:mysql-connector-j:8.2.0'
+
+    implementation 'io.github.mjfryc:mjaron-etudes-java:0.3.0'
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register("start-app", JavaExec) {
+    mainClass = "com.ptithcm.Main"
+    group = "Execution"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+tasks.register('fatJar', Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.ptithcm.Main'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
