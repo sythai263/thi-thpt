@@ -3,33 +3,76 @@ package com.ptithcm.entities;
 import com.google.gson.Gson;
 
 public class Student {
+    protected Long id;
+    protected String name;
+    protected String studentClass;
+    protected Long schoolId;
+    protected String schoolName;
+    protected String groupSubject;
+    protected Boolean isExit;
 
-  private Long id;
-  private String name;
+    public Student() {
+    }
 
+    public Long getId() {
+        return id;
+    }
 
-  public Student() {
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public Long getId() {
-    return id;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getStudentClass() {
+        return studentClass;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setStudentClass(String studentClass) {
+        this.studentClass = studentClass;
+    }
 
-  public String toJsonString() {
-    Gson gson = new Gson();
-    return gson.toJson(this);
-  }
+    public Long getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Long schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getGroupSubject() {
+        return groupSubject;
+    }
+
+    public void setGroupSubject(String groupSubject) {
+        this.groupSubject = groupSubject;
+    }
+
+    public Boolean getIsExit() {
+        return isExit;
+    }
+
+    public void setIsExit(Boolean exit) {
+        this.isExit = exit;
+    }
+
+    public String toJsonString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
 
 }

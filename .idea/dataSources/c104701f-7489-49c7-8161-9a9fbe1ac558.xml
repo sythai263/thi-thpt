@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="localhost PTIT">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.48">
-    <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <Grants>ptit|schema||ptithcm||ALTER|G
-ptit|schema||ptithcm||ALTER ROUTINE|G
-ptit|schema||ptithcm||CREATE|G
-ptit|schema||ptithcm||CREATE ROUTINE|G
-ptit|schema||ptithcm||CREATE TEMPORARY TABLES|G
-ptit|schema||ptithcm||CREATE VIEW|G
-ptit|schema||ptithcm||DELETE|G
-ptit|schema||ptithcm||DELETE HISTORY|G
-ptit|schema||ptithcm||DROP|G
-ptit|schema||ptithcm||EVENT|G
-ptit|schema||ptithcm||EXECUTE|G
-ptit|schema||ptithcm||INDEX|G
-ptit|schema||ptithcm||INSERT|G
-ptit|schema||ptithcm||LOCK TABLES|G
-ptit|schema||ptithcm||REFERENCES|G
-ptit|schema||ptithcm||SELECT|G
-ptit|schema||ptithcm||SHOW VIEW|G
-ptit|schema||ptithcm||TRIGGER|G
-ptit|schema||ptithcm||UPDATE|G</Grants>
-      <ServerVersion>11.2.2</ServerVersion>
-    </root>
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.49">
+    <root id="1"/>
     <collation id="2" parent="1" name="big5_chinese_ci">
       <Charset>big5</Charset>
       <DefaultForCharset>1</DefaultForCharset>

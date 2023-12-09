@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab6e90c6-0c34-40d9-ba22-847863c40337" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/sql/add_table.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c104701f-7489-49c7-8161-9a9fbe1ac558.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c104701f-7489-49c7-8161-9a9fbe1ac558.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/add_table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/add_table.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/School.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/School.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +38,35 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "history": [
+    {
+      "state": "OPEN",
+      "assignee": "sythai263"
+    }
+  ],
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "sythai263"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="31a305c6-9a1d-466e-a861-7f86f8e70e3a" />
+        <option name="url" value="https://github.com/sythai263/thi-thpt.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2Z1QXaPmZr9kcsO3AQhntTo1AWf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -51,6 +84,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/huynhloc/Desktop/project/thi-thpt/thi-thpt&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -60,7 +94,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.22183909&quot;,
     &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -69,6 +103,24 @@
     ]
   }
 }</component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH=".env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,6 +131,14 @@
       <updated>1701587146287</updated>
       <workItem from="1701587147387" duration="6960000" />
       <workItem from="1701606306047" duration="6696000" />
+      <workItem from="1701682437617" duration="5936000" />
+      <workItem from="1701693374165" duration="2951000" />
+      <workItem from="1701771132842" duration="1527000" />
+      <workItem from="1701792834968" duration="70000" />
+      <workItem from="1701844653499" duration="123000" />
+      <workItem from="1701958516353" duration="671000" />
+      <workItem from="1702012713895" duration="14030000" />
+      <workItem from="1702106312522" duration="11315000" />
     </task>
     <servers />
   </component>
