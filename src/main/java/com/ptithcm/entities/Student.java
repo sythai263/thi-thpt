@@ -3,76 +3,86 @@ package com.ptithcm.entities;
 import com.google.gson.Gson;
 
 public class Student {
-    protected Long id;
-    protected String name;
-    protected String studentClass;
-    protected Long schoolId;
-    protected String schoolName;
-    protected String groupSubject;
-    protected Boolean isExit;
 
-    public Student() {
-    }
+  protected Long id;
+  protected String name;
+  protected String studentClass;
+  protected Long schoolId;
+  protected String schoolName;
+  protected String groupSubject;
+  protected Integer priority;
+  protected Boolean isExit;
 
-    public Long getId() {
-        return id;
-    }
+  public Student() {
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getStudentClass() {
-        return studentClass;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setStudentClass(String studentClass) {
-        this.studentClass = studentClass;
-    }
+  public String getStudentClass() {
+    return studentClass;
+  }
 
-    public Long getSchoolId() {
-        return schoolId;
-    }
+  public void setStudentClass(String studentClass) {
+    this.studentClass = studentClass;
+  }
 
-    public void setSchoolId(Long schoolId) {
-        this.schoolId = schoolId;
-    }
+  public Long getSchoolId() {
+    return schoolId;
+  }
 
-    public String getSchoolName() {
-        return schoolName;
-    }
+  public void setSchoolId(Long schoolId) {
+    this.schoolId = schoolId;
+  }
 
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
-    }
+  public String getSchoolName() {
+    return schoolName;
+  }
 
-    public String getGroupSubject() {
-        return groupSubject;
-    }
+  public void setSchoolName(String schoolName) {
+    this.schoolName = schoolName;
+  }
 
-    public void setGroupSubject(String groupSubject) {
-        this.groupSubject = groupSubject;
-    }
+  public String getGroupSubject() {
+    return groupSubject;
+  }
 
-    public Boolean getIsExit() {
-        return isExit;
-    }
+  public void setGroupSubject(String groupSubject) {
+    this.groupSubject = groupSubject;
+  }
 
-    public void setIsExit(Boolean exit) {
-        this.isExit = exit;
-    }
+  public Boolean getExit() {
+    return isExit;
+  }
 
-    public String toJsonString() {
-        Gson gson = new Gson();
-        return gson.toJson(this);
-    }
+  public void setExit(Boolean exit) {
+    isExit = exit;
+  }
+
+  public Integer getPriority() {
+    return priority;
+  }
+
+  public void setPriority(Integer priority) {
+    this.priority = priority;
+  }
+
+  public String toJsonString() {
+    Gson gson = new Gson();
+    return gson.toJson(this);
+  }
 
 }
