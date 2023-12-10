@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab6e90c6-0c34-40d9-ba22-847863c40337" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c104701f-7489-49c7-8161-9a9fbe1ac558.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c104701f-7489-49c7-8161-9a9fbe1ac558.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/add_table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/add_table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/School.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/School.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,18 +30,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "history": [
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
     {
-      "state": "OPEN",
-      "assignee": "sythai263"
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;sythai263&quot;
     }
   ],
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "sythai263"
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sythai263&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
