@@ -4,14 +4,14 @@ import com.google.gson.Gson;
 
 public class Student {
 
-  protected Long id;
-  protected String name;
-  protected String studentClass;
-  protected Long schoolId;
-  protected String schoolName;
-  protected String groupSubject;
-  protected Integer priority;
-  protected Boolean isExit;
+  Long id;
+  String name;
+  String studentClass;
+  Long schoolId;
+  String schoolName;
+  String groupSubject;
+  Integer priority;
+  Boolean existing;
 
   public Student() {
   }
@@ -64,20 +64,20 @@ public class Student {
     this.groupSubject = groupSubject;
   }
 
-  public Boolean getExit() {
-    return isExit;
-  }
-
-  public void setExit(Boolean exit) {
-    isExit = exit;
-  }
-
   public Integer getPriority() {
     return priority;
   }
 
   public void setPriority(Integer priority) {
     this.priority = priority;
+  }
+
+  public Boolean getExisting() {
+    return existing;
+  }
+
+  public void setExisting(Boolean existing) {
+    this.existing = existing;
   }
 
   public String toJsonString() {

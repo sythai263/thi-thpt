@@ -6,7 +6,7 @@ public class School {
 
   private Long id;
   private String name;
-  private Boolean isExit;
+  private Boolean existing;
 
   private String address;
 
@@ -37,12 +37,12 @@ public class School {
     this.name = name;
   }
 
-  public Boolean getExit() {
-    return isExit;
+  public Boolean getExisting() {
+    return existing;
   }
 
-  public void setExit(Boolean exit) {
-    isExit = exit;
+  public void setExisting(Boolean existing) {
+    this.existing = existing;
   }
 
   public String toJsonString() {

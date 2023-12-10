@@ -11,7 +11,7 @@ public class Exam {
   Date dueDate;
   String room;
   String subject;
-  Boolean isExit;
+  Boolean existing;
 
   public Long getId() {
     return id;
@@ -61,11 +61,11 @@ public class Exam {
     this.subject = subject;
   }
 
-  public Boolean getExit() {
-    return isExit;
+  public Boolean getExisting() {
+    return existing;
   }
 
-  public void setExit(Boolean exit) {
-    isExit = exit;
+  public void setExisting(Boolean existing) {
+    this.existing = existing;
   }
 }
