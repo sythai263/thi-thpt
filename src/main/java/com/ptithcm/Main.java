@@ -20,13 +20,47 @@ public class Main {
         while (selection != 0) {
             selection = getSelection();
             switch (selection) {
-                case 1 -> getAllStudent();
-                case 2 -> getStudentByName();
+                case 1 -> addStudent();
+                case 2 -> getAllStudent();
+                case 3 -> getStudentByName();
+                case 4 -> updateStudent();
+                case 5 -> deleteStudent();
+
             }
             clear();
         }
         System.out.println("Bye bye");
         scanner.close();
+    }
+
+    public static Student insertStudent() {
+        System.out.print("Nhập tên sv: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Nhập lớp sv: ");
+        String studentClass = scanner.nextLine();
+
+        System.out.print("Nhập mã trường: ");
+        Long schoolId = scanner.nextLong();
+
+        System.out.print("Nhập priority: ");
+        Integer priority = scanner.nextInt();
+
+        // Tiêu diệt dấu Enter còn lại trong bộ đệm
+        scanner.nextLine();
+
+        String groupSubject;
+        while (true) {
+            System.out.print("Nhập khối (A, B hoặc C): ");
+            groupSubject = scanner.nextLine();
+            if ("A".equals(groupSubject) || "B".equals(groupSubject) || "C".equals(groupSubject)) {
+                break;
+            } else {
+                System.out.println("Khối không hợp lệ. Vui lòng nhập lại.");
+            }
+        }
+
+        return new Student(name, studentClass, schoolId, groupSubject, priority);
     }
 
     public static void printTableStudent(List<Student> students) throws IOException {
@@ -51,13 +85,56 @@ public class Main {
         return selection;
     }
 
+    public static void addStudent() throws IOException {
+        studentService.addStudent(insertStudent());
+        askContinue();
+    }
+
+    public static void updateStudent() throws IOException {
+        System.out.print("Nhập mã sinh viên cần cập nhật: ");
+        Long id = scanner.nextLong();
+        scanner.nextLine();
+
+        List<Student> students = studentService.getStudentByName(id.toString());
+        if (students.isEmpty()) {
+            System.out.println("Không tìm thấy sinh viên có mã: " + id);
+        } else {
+            Student student = insertStudent();
+            student.setId(id);
+
+            studentService.updateStudent(student);
+        }
+        askContinue();
+    }
+
+    public static void deleteStudent() throws IOException {
+        System.out.print("Nhập mã sinh viên cần xoá: ");
+        Long id = scanner.nextLong();
+
+        List<Student> students = studentService.getStudentByName(id.toString());
+        if (students.isEmpty()) {
+            System.out.println("Không tìm thấy sinh viên có mã: " + id);
+        } else {
+            Student student = new Student();
+            student.setId(id);
+
+            studentService.deleteStudent(student);
+        }
+        scanner.nextLine();
+        askContinue();
+    }
+
     public static void getStudentByName() throws IOException {
         String name = "";
-        System.out.println("Nhập tên sv cần tìm: ");
+        System.out.print("Nhập tên hoặc mã sinh viên cần tìm: ");
         name = scanner.nextLine();
         List<Student> students = studentService.getStudentByName(name);
-        printTableStudent(students);
-
+        if (students.isEmpty()) {
+            System.out.println("Không tìm thấy sinh viên có mã/tên: " + name);
+            askContinue();
+        } else {
+            printTableStudent(students);
+        }
     }
 
     private static void clear() throws IOException {
