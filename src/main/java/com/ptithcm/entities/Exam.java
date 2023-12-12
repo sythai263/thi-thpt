@@ -4,68 +4,97 @@ import java.util.Date;
 
 public class Exam {
 
-  Long id;
-  Long studentId;
-  Long schoolId;
+    Long id;
+    Long studentId;
+    String studentName;
+    Long schoolId;
+    String schoolName;
 
-  Date dueDate;
-  String room;
-  String subject;
-  Boolean existing;
+    Date dueDate;
+    String room;
+    String subject;
+    Boolean existing;
 
-  public Long getId() {
-    return id;
-  }
+    public Exam(Long studentId, Long schoolId, Date dueDate, String room, String subject) {
+        this.studentId = studentId;
+        this.schoolId = schoolId;
+        this.dueDate = dueDate;
+        this.room = room;
+        this.subject = subject;
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public Exam() {
+    }
 
-  public Long getStudentId() {
-    return studentId;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setStudentId(Long studentId) {
-    this.studentId = studentId;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public Long getSchoolId() {
-    return schoolId;
-  }
+    public Long getStudentId() {
+        return studentId;
+    }
 
-  public void setSchoolId(Long schoolId) {
-    this.schoolId = schoolId;
-  }
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
 
-  public Date getDueDate() {
-    return dueDate;
-  }
+    public Long getSchoolId() {
+        return schoolId;
+    }
 
-  public void setDueDate(Date dueDate) {
-    this.dueDate = dueDate;
-  }
+    public void setSchoolId(Long schoolId) {
+        this.schoolId = schoolId;
+    }
 
-  public String getRoom() {
-    return room;
-  }
+    public Date getDueDate() {
+        return dueDate;
+    }
 
-  public void setRoom(String room) {
-    this.room = room;
-  }
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
 
-  public String getSubject() {
-    return subject;
-  }
+    public String getRoom() {
+        return room;
+    }
 
-  public void setSubject(String subject) {
-    this.subject = subject;
-  }
+    public void setRoom(String room) {
+        this.room = room;
+    }
 
-  public Boolean getExisting() {
-    return existing;
-  }
+    public String getSubject() {
+        return subject;
+    }
 
-  public void setExisting(Boolean existing) {
-    this.existing = existing;
-  }
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public Boolean getExisting() {
+        return existing;
+    }
+
+    public void setExisting(Boolean existing) {
+        this.existing = existing;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 }

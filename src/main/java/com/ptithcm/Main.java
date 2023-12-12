@@ -1,18 +1,27 @@
 package com.ptithcm;
 
 import com.ptithcm.common.Menu;
+import com.ptithcm.entities.Exam;
+import com.ptithcm.entities.School;
 import com.ptithcm.entities.Student;
+import com.ptithcm.services.ExamService;
+import com.ptithcm.services.SchoolService;
 import com.ptithcm.services.StudentService;
-import pl.mjaron.etudes.Table;
-
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import pl.mjaron.etudes.Table;
 
 public class Main {
 
     static StudentService studentService = new StudentService();
+    static SchoolService schoolService = new SchoolService();
+    static ExamService examService = new ExamService();
     static Scanner scanner = new Scanner(System.in);
+    static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args) throws IOException {
         clear();
@@ -25,6 +34,8 @@ public class Main {
                 case 3 -> getStudentByName();
                 case 4 -> updateStudent();
                 case 5 -> deleteStudent();
+                case 6 -> addSchool();
+                case 7 -> addExam();
 
             }
             clear();
@@ -42,10 +53,10 @@ public class Main {
 
         System.out.print("Nhập mã trường: ");
         Long schoolId = scanner.nextLong();
+        scanner.nextLine();
 
-        System.out.print("Nhập priority: ");
+        System.out.print("Nhập loại ưu tiên: ");
         Integer priority = scanner.nextInt();
-
         // Tiêu diệt dấu Enter còn lại trong bộ đệm
         scanner.nextLine();
 
@@ -66,6 +77,12 @@ public class Main {
     public static void printTableStudent(List<Student> students) throws IOException {
         clear();
         Table.render(students, Student.class).run();
+        askContinue();
+    }
+
+    public static void printTableExam(List<Exam> exams) throws IOException {
+        clear();
+        Table.render(exams, Exam.class).run();
         askContinue();
     }
 
@@ -135,6 +152,115 @@ public class Main {
         } else {
             printTableStudent(students);
         }
+    }
+
+    public static void addSchool() throws IOException {
+        System.out.print("Nhập tên trường: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Nhập địa chỉ: ");
+        String address = scanner.nextLine();
+
+        School school = new School(name, address);
+        int rowsInserted = schoolService.addSchool(school);
+        if (rowsInserted > 0) {
+            System.out.println("Trường đã được thêm thành công!");
+        } else {
+            System.out.println("Không thể thêm trường. Vui lòng thử lại.");
+        }
+        askContinue();
+    }
+
+    public static void addExam() throws IOException {
+        List<Exam> examList = examService.getAllExam();
+        printTableExam(examList);
+        Student student = inputAndCheckStudent();
+        School school = inputAndCheckSchool();
+        Date date = inputAndCheckDueDate();
+        String room = inputRoom();
+        String subject = inputSubject();
+        Exam exam = new Exam(student.getId(), school.getId(), date, room, subject);
+        int result = examService.addExam(exam);
+        if (result > 0) {
+            System.out.println("Lịch thi đã được thêm thành công!");
+        } else {
+            System.out.println("Không thể thêm lịch thi. Vui lòng thử lại.");
+        }
+        examList = examService.getAllExam();
+        printTableExam(examList);
+        askContinue();
+    }
+
+    private static Student inputAndCheckStudent() {
+        long studentId;
+        Student student;
+        do {
+            System.out.print("Nhập mã hs: ");
+            studentId = scanner.nextLong();
+            scanner.nextLine();
+            student = studentService.getStudentById(studentId);
+            if (student == null) {
+                System.out.println("Học sinh không tồn tại, Vui lòng nhập lại");
+            } else {
+                Table.render(new Student[]{student}, Student.class).run();
+            }
+        } while (student == null);
+        return student;
+    }
+
+    private static School inputAndCheckSchool() {
+        long schoolId;
+        School school;
+        do {
+            System.out.print("Nhập mã trường thi: ");
+            schoolId = scanner.nextLong();
+            scanner.nextLine();
+            school = schoolService.getSchoolById(schoolId);
+            if (school == null) {
+                System.out.println("Trường không tồn tại, Vui lòng nhập lại");
+            } else {
+                Table.render(new School[]{school}, School.class).run();
+            }
+        } while (school == null);
+
+        return school;
+    }
+
+    private static Date inputAndCheckDueDate() {
+        String dueDate;
+        Date date = null;
+        do {
+            System.out.print("Nhập ngày thi (yyyy-MM-dd): ");
+            dueDate = scanner.nextLine();
+            try {
+                date = formatter.parse(dueDate);
+            } catch (ParseException e) {
+                System.out.println(
+                    "Ngày thi không hợp lệ, định dạng hợp lệ (yyyy-MM-dd). Vui lòng nhập lại");
+            }
+        } while (date == null);
+
+        return date;
+    }
+
+    private static String inputRoom() {
+        String room;
+        do {
+            System.out.print("Nhp phòng thi: ");
+            room = scanner.nextLine().trim();
+        } while (room.equals(""));
+
+        return room;
+    }
+
+    private static String inputSubject() {
+        String subject;
+        do {
+            System.out.print("Nhập môn học: ");
+            subject = scanner.nextLine().trim();
+        } while (subject.equals(""));
+
+        return subject;
     }
 
     private static void clear() throws IOException {
