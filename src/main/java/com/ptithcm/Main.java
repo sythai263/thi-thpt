@@ -7,13 +7,14 @@ import com.ptithcm.entities.Student;
 import com.ptithcm.services.ExamService;
 import com.ptithcm.services.SchoolService;
 import com.ptithcm.services.StudentService;
+import pl.mjaron.etudes.Table;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import pl.mjaron.etudes.Table;
 
 public class Main {
 
@@ -36,6 +37,7 @@ public class Main {
                 case 5 -> deleteStudent();
                 case 6 -> addSchool();
                 case 7 -> addExam();
+                case 8 -> getStudentByGroupSubject();
 
             }
             clear();
@@ -45,33 +47,13 @@ public class Main {
     }
 
     public static Student insertStudent() {
-        System.out.print("Nhập tên sv: ");
-        String name = scanner.nextLine();
+        String name = inputCheckEmpty("tên");
+        String studentClass = inputCheckEmpty("lớp");
+        School school = inputAndCheckSchool();
+        String priority = inputStudentPriority();
+        String groupSubject = inputAndCheckGroupSubject();
 
-        System.out.print("Nhập lớp sv: ");
-        String studentClass = scanner.nextLine();
-
-        System.out.print("Nhập mã trường: ");
-        Long schoolId = scanner.nextLong();
-        scanner.nextLine();
-
-        System.out.print("Nhập loại ưu tiên: ");
-        Integer priority = scanner.nextInt();
-        // Tiêu diệt dấu Enter còn lại trong bộ đệm
-        scanner.nextLine();
-
-        String groupSubject;
-        while (true) {
-            System.out.print("Nhập khối (A, B hoặc C): ");
-            groupSubject = scanner.nextLine();
-            if ("A".equals(groupSubject) || "B".equals(groupSubject) || "C".equals(groupSubject)) {
-                break;
-            } else {
-                System.out.println("Khối không hợp lệ. Vui lòng nhập lại.");
-            }
-        }
-
-        return new Student(name, studentClass, schoolId, groupSubject, priority);
+        return new Student(name, studentClass, school.getId(), groupSubject, Integer.parseInt(priority));
     }
 
     public static void printTableStudent(List<Student> students) throws IOException {
@@ -103,63 +85,80 @@ public class Main {
     }
 
     public static void addStudent() throws IOException {
-        studentService.addStudent(insertStudent());
+        int rowsInserted = studentService.addStudent(insertStudent());
+        if (rowsInserted > 0) {
+            System.out.println("Sinh viên đã được thêm thành công!");
+        } else {
+            System.out.println("Không thể thêm sinh viên. Vui lòng thử lại.");
+        }
         askContinue();
     }
 
     public static void updateStudent() throws IOException {
-        System.out.print("Nhập mã sinh viên cần cập nhật: ");
-        Long id = scanner.nextLong();
-        scanner.nextLine();
-
-        List<Student> students = studentService.getStudentByName(id.toString());
-        if (students.isEmpty()) {
-            System.out.println("Không tìm thấy sinh viên có mã: " + id);
+        Student student = inputAndCheckStudent();
+        System.out.println("Chỉnh sửa thông tin học sinh");
+        Student studentUpdate = insertStudent();
+        studentUpdate.setId(student.getId());
+        int rowsUpdated = studentService.updateStudent(studentUpdate);
+        if (rowsUpdated > 0) {
+            System.out.println("Cập nhật sinh viên thành công!");
         } else {
-            Student student = insertStudent();
-            student.setId(id);
-
-            studentService.updateStudent(student);
+            System.out.println("Cập nhật sinh viên thất bại. Vui lòng thử lại.");
         }
+        System.out.println("Danh sách học sinh sau khi cập nhật!");
+        List<Student> list = studentService.getStudents();
+        Table.render(list, Student.class).run();
         askContinue();
     }
 
     public static void deleteStudent() throws IOException {
-        System.out.print("Nhập mã sinh viên cần xoá: ");
-        Long id = scanner.nextLong();
-
-        List<Student> students = studentService.getStudentByName(id.toString());
-        if (students.isEmpty()) {
-            System.out.println("Không tìm thấy sinh viên có mã: " + id);
+        Student student = inputAndCheckStudent();
+        int rowsUpdated = studentService.deleteStudent(student);
+        if (rowsUpdated > 0) {
+            System.out.println("Xoá sinh viên thành công!");
         } else {
-            Student student = new Student();
-            student.setId(id);
-
-            studentService.deleteStudent(student);
+            System.out.println("Xoá sinh viên thất bại. Vui lòng thử lại.");
         }
-        scanner.nextLine();
+        System.out.println("Danh sách học sinh sau khi xoá!");
+        List<Student> list = studentService.getStudents();
+        Table.render(list, Student.class).run();
         askContinue();
     }
 
     public static void getStudentByName() throws IOException {
-        String name = "";
-        System.out.print("Nhập tên hoặc mã sinh viên cần tìm: ");
-        name = scanner.nextLine();
-        List<Student> students = studentService.getStudentByName(name);
-        if (students.isEmpty()) {
-            System.out.println("Không tìm thấy sinh viên có mã/tên: " + name);
+        System.out.print("Nhập tên hoặc mã học sinh cần tìm: ");
+        String input = scanner.nextLine();
+
+        try {
+            Long studentId = Long.parseLong(input);
+            Student student = studentService.getStudentById(studentId);
+
+            if (student == null) {
+                System.out.println("Không tìm thấy học sinh có mã: " + studentId);
+            } else {
+                Table.render(new Student[]{student}, Student.class).run();
+            }
             askContinue();
-        } else {
-            printTableStudent(students);
+        } catch (NumberFormatException e) {
+            List<Student> students = studentService.getStudentByName(input);
+            if (students.isEmpty()) {
+                System.out.println("Không tìm thấy học sinh có tên: " + input);
+                askContinue();
+            } else {
+                printTableStudent(students);
+            }
         }
     }
 
-    public static void addSchool() throws IOException {
-        System.out.print("Nhập tên trường: ");
-        String name = scanner.nextLine();
+    public static void getStudentByGroupSubject() throws IOException {
+        String groupSubject = inputAndCheckGroupSubject();
+        List<Student> students = studentService.getStudentByGroupSubject(groupSubject);
+        printTableStudent(students);
+    }
 
-        System.out.print("Nhập địa chỉ: ");
-        String address = scanner.nextLine();
+    public static void addSchool() throws IOException {
+        String name = inputCheckEmpty("tên trường");
+        String address = inputCheckEmpty("địa chỉ");
 
         School school = new School(name, address);
         int rowsInserted = schoolService.addSchool(school);
@@ -177,8 +176,8 @@ public class Main {
         Student student = inputAndCheckStudent();
         School school = inputAndCheckSchool();
         Date date = inputAndCheckDueDate();
-        String room = inputRoom();
-        String subject = inputSubject();
+        String room = inputCheckEmpty("phòng thi");
+        String subject = inputCheckEmpty("môn học");
         Exam exam = new Exam(student.getId(), school.getId(), date, room, subject);
         int result = examService.addExam(exam);
         if (result > 0) {
@@ -195,7 +194,7 @@ public class Main {
         long studentId;
         Student student;
         do {
-            System.out.print("Nhập mã hs: ");
+            System.out.print("Nhập mã học sinh: ");
             studentId = scanner.nextLong();
             scanner.nextLine();
             student = studentService.getStudentById(studentId);
@@ -212,7 +211,7 @@ public class Main {
         long schoolId;
         School school;
         do {
-            System.out.print("Nhập mã trường thi: ");
+            System.out.print("Nhập mã trường: ");
             schoolId = scanner.nextLong();
             scanner.nextLine();
             school = schoolService.getSchoolById(schoolId);
@@ -236,31 +235,57 @@ public class Main {
                 date = formatter.parse(dueDate);
             } catch (ParseException e) {
                 System.out.println(
-                    "Ngày thi không hợp lệ, định dạng hợp lệ (yyyy-MM-dd). Vui lòng nhập lại");
+                        "Ngày thi không hợp lệ, định dạng hợp lệ (yyyy-MM-dd). Vui lòng nhập lại");
             }
         } while (date == null);
 
         return date;
     }
 
-    private static String inputRoom() {
-        String room;
+    private static String inputCheckEmpty(String value) {
+        String input;
         do {
-            System.out.print("Nhp phòng thi: ");
-            room = scanner.nextLine().trim();
-        } while (room.equals(""));
-
-        return room;
+            System.out.print("Nhập " + value + ": ");
+            input = scanner.nextLine().trim();
+        } while (input.equals(""));
+        return input;
     }
 
-    private static String inputSubject() {
-        String subject;
+    private static String inputAndCheckGroupSubject() {
+        String groupSubject;
         do {
-            System.out.print("Nhập môn học: ");
-            subject = scanner.nextLine().trim();
-        } while (subject.equals(""));
+            System.out.print("Nhập khối (A, B hoặc C): ");
+            groupSubject = scanner.nextLine().trim();
+            if ("A".equals(groupSubject) || "B".equals(groupSubject) || "C".equals(groupSubject)) {
+                break;
+            } else {
+                System.out.println("Khối không hợp lệ. Vui lòng nhập lại.");
+            }
+        } while (true);
+        return groupSubject;
+    }
 
-        return subject;
+    private static String inputStudentPriority() {
+        String studentPriority;
+        do {
+            System.out.print("Nhập loại ưu tiên: ");
+            studentPriority = scanner.nextLine().trim();
+
+            if (studentPriority.isEmpty() || !isNumeric(studentPriority)) {
+                System.out.println("Loại ưu tiên không hợp lệ. Vui lòng nhập lại.");
+            }
+        } while (studentPriority.isEmpty() || !isNumeric(studentPriority));
+
+        return studentPriority;
+    }
+
+    private static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private static void clear() throws IOException {
