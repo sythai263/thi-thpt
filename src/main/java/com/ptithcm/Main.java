@@ -7,14 +7,15 @@ import com.ptithcm.entities.Student;
 import com.ptithcm.services.ExamService;
 import com.ptithcm.services.SchoolService;
 import com.ptithcm.services.StudentService;
-import pl.mjaron.etudes.Table;
-
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import pl.mjaron.etudes.Table;
 
 public class Main {
 
@@ -38,6 +39,7 @@ public class Main {
                 case 6 -> addSchool();
                 case 7 -> addExam();
                 case 8 -> getStudentByGroupSubject();
+                case 9 -> exportToCsvFile();
 
             }
             clear();
@@ -53,7 +55,8 @@ public class Main {
         String priority = inputStudentPriority();
         String groupSubject = inputAndCheckGroupSubject();
 
-        return new Student(name, studentClass, school.getId(), groupSubject, Integer.parseInt(priority));
+        return new Student(name, studentClass, school.getId(), groupSubject,
+            Integer.parseInt(priority));
     }
 
     public static void printTableStudent(List<Student> students) throws IOException {
@@ -235,7 +238,7 @@ public class Main {
                 date = formatter.parse(dueDate);
             } catch (ParseException e) {
                 System.out.println(
-                        "Ngày thi không hợp lệ, định dạng hợp lệ (yyyy-MM-dd). Vui lòng nhập lại");
+                    "Ngày thi không hợp lệ, định dạng hợp lệ (yyyy-MM-dd). Vui lòng nhập lại");
             }
         } while (date == null);
 
@@ -277,6 +280,26 @@ public class Main {
         } while (studentPriority.isEmpty() || !isNumeric(studentPriority));
 
         return studentPriority;
+    }
+
+    private static void exportToCsvFile() {
+        List<Exam> examList = examService.getAllExam();
+        String csvFile = "export_exam_" + formatter.format(new Date()) + ".csv";
+
+        try (
+            FileWriter fileWriter = new FileWriter(csvFile);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+        ) {
+            printWriter.println("STT,Trường thi, Phòng thi, Ngày thi, Tên Học sinh, Môn thi");
+            long count = 1;
+            for (Exam exam : examList) {
+                printWriter.println(count + "," + exam.toCsvRow());
+                count++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static boolean isNumeric(String str) {

@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab6e90c6-0c34-40d9-ba22-847863c40337" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/common/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/common/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/Exam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/entities/Exam.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

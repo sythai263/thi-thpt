@@ -25,9 +25,8 @@ public class Menu {
         menuList.add(new Menu(5, "Xóa thông tin thí sinh khỏi danh sách"));
         menuList.add(new Menu(6, "Thêm trường thi."));
         menuList.add(new Menu(7, "Cập nhật lịch thi cho học sinh."));
-        menuList.add(new Menu(8, "Xuất danh sách thí sinh theo trường thi, phòng thi, lịch thi"));
-        menuList.add(new Menu(9, "Hiển thị danh sách thí sinh theo khối thi"));
-        menuList.add(new Menu(10, "Xuất danh sách thí sinh ra file CSV"));
+        menuList.add(new Menu(8, "Hiển thị danh sách thí sinh theo khối thi"));
+        menuList.add(new Menu(9, "Xuất danh sách thí sinh ra file CSV"));
         menuList.add(new Menu(0, "Thoát"));
         return menuList;
 

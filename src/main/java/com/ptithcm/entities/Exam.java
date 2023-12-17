@@ -1,5 +1,6 @@
 package com.ptithcm.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Exam {
@@ -96,5 +97,17 @@ public class Exam {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getDueDateFormat() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return formatter.format(dueDate);
+
+
+    }
+
+    public String toCsvRow() {
+        return String.format("%s, %s, %s, %s, %s", getSchoolName(), getRoom(),
+            getDueDateFormat(), getStudentName(), getSubject());
     }
 }
