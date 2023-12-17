@@ -290,12 +290,14 @@ public class Main {
             FileWriter fileWriter = new FileWriter(csvFile);
             PrintWriter printWriter = new PrintWriter(fileWriter);
         ) {
-            printWriter.println("STT,Trường thi, Phòng thi, Ngày thi, Tên Học sinh, Môn thi");
+            printWriter.println("STT, Trường thi, Phòng thi, Ngày thi, Tên Học sinh, Môn thi");
             long count = 1;
             for (Exam exam : examList) {
                 printWriter.println(count + "," + exam.toCsvRow());
                 count++;
             }
+            System.out.println("File được xuất: " + csvFile);
+            askContinue();
         } catch (IOException e) {
             e.printStackTrace();
         }
