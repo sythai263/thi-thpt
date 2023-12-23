@@ -48,7 +48,7 @@ public class Main {
         scanner.close();
     }
 
-    public static Student insertStudent() {
+    public static Student inputStudent() {
         String name = inputCheckEmpty("tên");
         String studentClass = inputCheckEmpty("lớp");
         School school = inputAndCheckSchool();
@@ -88,11 +88,12 @@ public class Main {
     }
 
     public static void addStudent() throws IOException {
-        int rowsInserted = studentService.addStudent(insertStudent());
+        Student student = inputStudent();
+        int rowsInserted = studentService.addStudent(student);
         if (rowsInserted > 0) {
-            System.out.println("Sinh viên đã được thêm thành công!");
+            System.out.println("Học sinh đã được thêm thành công!");
         } else {
-            System.out.println("Không thể thêm sinh viên. Vui lòng thử lại.");
+            System.out.println("Không thể thêm học sinh. Vui lòng thử lại.");
         }
         askContinue();
     }
@@ -100,7 +101,7 @@ public class Main {
     public static void updateStudent() throws IOException {
         Student student = inputAndCheckStudent();
         System.out.println("Chỉnh sửa thông tin học sinh");
-        Student studentUpdate = insertStudent();
+        Student studentUpdate = inputStudent();
         studentUpdate.setId(student.getId());
         int rowsUpdated = studentService.updateStudent(studentUpdate);
         if (rowsUpdated > 0) {
@@ -259,7 +260,8 @@ public class Main {
         do {
             System.out.print("Nhập khối (A, B hoặc C): ");
             groupSubject = scanner.nextLine().trim();
-            if ("A".equals(groupSubject) || "B".equals(groupSubject) || "C".equals(groupSubject)) {
+            if ("A".equals(groupSubject) || "B".equalsIgnoreCase(groupSubject) || "C".equals(
+                groupSubject)) {
                 break;
             } else {
                 System.out.println("Khối không hợp lệ. Vui lòng nhập lại.");
