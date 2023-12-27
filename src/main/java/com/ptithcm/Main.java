@@ -10,6 +10,7 @@ import com.ptithcm.services.StudentService;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -290,7 +291,7 @@ public class Main {
         String csvFile = "export_exam_" + formatter.format(new Date()) + ".csv";
 
         try (
-            FileWriter fileWriter = new FileWriter(csvFile);
+            FileWriter fileWriter = new FileWriter(csvFile, StandardCharsets.UTF_8);
             PrintWriter printWriter = new PrintWriter(fileWriter);
         ) {
             printWriter.println("STT, Trường thi, Phòng thi, Ngày thi, Tên Học sinh, Môn thi");
