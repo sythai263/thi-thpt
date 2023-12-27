@@ -40,7 +40,7 @@ public class Main {
                 case 7 -> addExam();
                 case 8 -> getStudentByGroupSubject();
                 case 9 -> exportToCsvFile();
-
+                default -> System.out.println("Chức năng khôn tồn tại, vui lòng nhập lại !");
             }
             clear();
         }
@@ -260,8 +260,9 @@ public class Main {
         do {
             System.out.print("Nhập khối (A, B hoặc C): ");
             groupSubject = scanner.nextLine().trim();
-            if ("A".equals(groupSubject) || "B".equalsIgnoreCase(groupSubject) || "C".equals(
-                groupSubject)) {
+            if ("A".equalsIgnoreCase(groupSubject) ||
+                "B".equalsIgnoreCase(groupSubject) ||
+                "C".equalsIgnoreCase(groupSubject)) {
                 break;
             } else {
                 System.out.println("Khối không hợp lệ. Vui lòng nhập lại.");
@@ -315,7 +316,7 @@ public class Main {
         }
     }
 
-    private static void clear() throws IOException {
+    private static void clear() {
         for (int i = 0; i < 10; i++) {
             System.out.println();
             System.out.println();

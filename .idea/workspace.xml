@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab6e90c6-0c34-40d9-ba22-847863c40337" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/add_table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/add_table.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ptithcm/services/StudentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +157,12 @@
       <workItem from="1702209759437" duration="15090000" />
       <workItem from="1702297935776" duration="171000" />
       <workItem from="1702396015836" duration="7226000" />
+      <workItem from="1703520621324" duration="2839000" />
+      <workItem from="1703691937041" duration="445000" />
+      <workItem from="1703692487326" duration="95000" />
+      <workItem from="1703692646233" duration="284000" />
+      <workItem from="1703692993668" duration="142000" />
+      <workItem from="1703693161314" duration="48000" />
     </task>
     <servers />
   </component>
@@ -174,6 +182,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/ptithcm/Main.java</url>
+          <line>100</line>
+          <properties class="com.ptithcm.Main" method="updateStudent">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

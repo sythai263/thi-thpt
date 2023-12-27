@@ -2,8 +2,11 @@ package com.ptithcm.services;
 
 import com.ptithcm.common.ConnectionDB;
 import com.ptithcm.entities.Student;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,19 +17,21 @@ public class StudentService {
     }
 
     public List<Student> getStudents() {
-        try (Connection connection = ConnectionDB.getConnection(); Statement statement = connection.createStatement()) {
+        try (
+            Connection connection = ConnectionDB.getConnection();
+            Statement statement = connection.createStatement()) {
             String sql = "SELECT " +
-                    "student.id AS id, " +
-                    "student.name AS name, " +
-                    "student.studentClass, " +
-                    "student.groupSubject, " +
-                    "student.existing as existing, " +
-                    "student.schoolId as schoolId, " +
-                    "school.name as schoolName, " +
-                    "student.priority " +
-                    "FROM student " +
-                    "JOIN school ON student.schoolId = school.id " +
-                    "WHERE student.existing = true";
+                "student.id AS id, " +
+                "student.name AS name, " +
+                "student.studentClass, " +
+                "student.groupSubject, " +
+                "student.existing as existing, " +
+                "student.schoolId as schoolId, " +
+                "school.name as schoolName, " +
+                "student.priority " +
+                "FROM student " +
+                "JOIN school ON student.schoolId = school.id " +
+                "WHERE student.existing = true";
             ResultSet rs = statement.executeQuery(sql);
             List<Student> studentList = new ArrayList<>();
             while (rs.next()) {
@@ -44,8 +49,8 @@ public class StudentService {
         String sql = "INSERT INTO student (name, studentClass, schoolId, priority, groupSubject) VALUES (?, ?, ?, ?, ?)";
 
         try (
-                Connection connection = ConnectionDB.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            Connection connection = ConnectionDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setString(1, student.getName());
             statement.setString(2, student.getStudentClass());
@@ -62,12 +67,12 @@ public class StudentService {
 
     public int updateStudent(Student student) {
         String sql = "UPDATE student " +
-                "SET name = ?, studentClass = ?, schoolId = ?, priority = ?, groupSubject = ? " +
-                "WHERE id = ?";
+            "SET name = ?, studentClass = ?, schoolId = ?, priority = ?, groupSubject = ? " +
+            "WHERE id = ?";
 
         try (
-                Connection connection = ConnectionDB.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            Connection connection = ConnectionDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setString(1, student.getName());
             statement.setString(2, student.getStudentClass());
@@ -86,8 +91,8 @@ public class StudentService {
         String sql = "UPDATE student SET existing = false WHERE id = ?";
 
         try (
-                Connection connection = ConnectionDB.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            Connection connection = ConnectionDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setLong(1, student.getId());  // Assume student has getId() method
 
@@ -100,21 +105,21 @@ public class StudentService {
 
     public List<Student> getStudentByName(String name) {
         String sql = "SELECT " +
-                "student.id AS id, " +
-                "student.name AS name, " +
-                "student.studentClass, " +
-                "student.groupSubject, " +
-                "student.existing as existing, " +
-                "student.schoolId as schoolId, " +
-                "school.name as schoolName, " +
-                "student.priority " +
-                "FROM student " +
-                "JOIN school ON student.schoolId = school.id " +
-                "WHERE student.name LIKE ? AND student.existing = ?";
+            "student.id AS id, " +
+            "student.name AS name, " +
+            "student.studentClass, " +
+            "student.groupSubject, " +
+            "student.existing as existing, " +
+            "student.schoolId as schoolId, " +
+            "school.name as schoolName, " +
+            "student.priority " +
+            "FROM student " +
+            "JOIN school ON student.schoolId = school.id " +
+            "WHERE student.name LIKE ? AND student.existing = ?";
 
         try (
-                Connection connection = ConnectionDB.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            Connection connection = ConnectionDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setString(1, "%" + name);
             statement.setBoolean(2, true);
@@ -134,21 +139,21 @@ public class StudentService {
 
     public List<Student> getStudentByGroupSubject(String groupSubject) {
         String sql = "SELECT " +
-                "student.id AS id, " +
-                "student.name AS name, " +
-                "student.studentClass, " +
-                "student.groupSubject, " +
-                "student.existing as existing, " +
-                "student.schoolId as schoolId, " +
-                "school.name as schoolName, " +
-                "student.priority " +
-                "FROM student " +
-                "JOIN school ON student.schoolId = school.id " +
-                "WHERE student.groupSubject LIKE ? AND student.existing = ?";
+            "student.id AS id, " +
+            "student.name AS name, " +
+            "student.studentClass, " +
+            "student.groupSubject, " +
+            "student.existing as existing, " +
+            "student.schoolId as schoolId, " +
+            "school.name as schoolName, " +
+            "student.priority " +
+            "FROM student " +
+            "JOIN school ON student.schoolId = school.id " +
+            "WHERE student.groupSubject LIKE ? AND student.existing = ?";
 
         try (
-                Connection connection = ConnectionDB.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            Connection connection = ConnectionDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setString(1, groupSubject);
             statement.setBoolean(2, true);
@@ -168,21 +173,21 @@ public class StudentService {
 
     public Student getStudentById(Long id) {
         String sql = "SELECT " +
-                "st.id AS id, " +
-                "st.name AS name, " +
-                "st.studentClass, " +
-                "st.groupSubject, " +
-                "st.existing as existing, " +
-                "st.schoolId as schoolId, " +
-                "sc.name as schoolName, " +
-                "st.priority " +
-                "FROM student st " +
-                "JOIN school sc ON st.schoolId = sc.id " +
-                "WHERE st.id = ? AND st.existing = ?";
+            "st.id AS id, " +
+            "st.name AS name, " +
+            "st.studentClass, " +
+            "st.groupSubject, " +
+            "st.existing as existing, " +
+            "st.schoolId as schoolId, " +
+            "sc.name as schoolName, " +
+            "st.priority " +
+            "FROM student st " +
+            "JOIN school sc ON st.schoolId = sc.id " +
+            "WHERE st.id = ? AND st.existing = ?";
 
         try (
-                Connection connection = ConnectionDB.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            Connection connection = ConnectionDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setLong(1, id);
             statement.setBoolean(2, true);
